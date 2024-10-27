@@ -57,10 +57,10 @@ try:
             f'Content-Length: {len(data)}\r\n'
             'Connection: close\r\n'
             '\r\n\r\n'
-            f'{data}'
         )
+        response = response.encode("ISO-8859-1") + data
 
-        client_socket.sendall(response.encode("ISO-8859-1"))
+        client_socket.sendall(response)
 
         client_socket.close()
 except KeyboardInterrupt:
