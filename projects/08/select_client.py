@@ -46,12 +46,15 @@ def main(argv):
     s.connect((host, port))
 
     # Loop forever sending data at random time intervals
-    while True:
-        string_to_send = f"{prefix}: {random_string()}"
-        string_bytes = string_to_send.encode()
-        s.send(string_bytes)
+    try:
+        while True:
+            string_to_send = f"{prefix}: {random_string()}"
+            string_bytes = string_to_send.encode()
+            s.send(string_bytes)
 
-        delay_random_time()
+            delay_random_time()
+    except KeyboardInterrupt:
+        s.close()
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv))
